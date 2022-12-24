@@ -5,7 +5,7 @@ import { User } from "../../models/User";
 
 export async function authenticateUser(request: Request, response: Response) {
   try {
-    const { email, password } = request.body;
+    const { email, password, role } = request.body;
 
     const user = await User.findOne({ email });
 
@@ -13,6 +13,10 @@ export async function authenticateUser(request: Request, response: Response) {
       return response
         .status(404)
         .json({ message: "Email or password invalid" });
+    }
+
+    if (role !== "ADMIN" && role !== user.role) {
+      return response.status(401).json({ message: "Not have permissions" });
     }
 
     user.comparePasswords(password, (err, isMatch) => {
