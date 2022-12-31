@@ -1,6 +1,7 @@
 import path from "node:path";
 import http from "node:http";
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import { Server } from "socket.io";
 
@@ -15,13 +16,7 @@ mongoose
   .then(() => {
     const port = 3333;
 
-    app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Methods", "*");
-      res.setHeader("Access-Control-Allow-Headers", "*");
-
-      next();
-    });
+    app.use(cors());
     app.use(
       "/uploads",
       express.static(path.resolve(__dirname, "..", "uploads"))
