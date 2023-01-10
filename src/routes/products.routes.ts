@@ -5,6 +5,7 @@ import path from "node:path";
 import { createProducts } from "../app/useCases/products/createProduct";
 import { updateProduct } from "../app/useCases/products/updateProduct";
 import { listProducts } from "../app/useCases/products/listProducts";
+import { deleteProduct } from "../app/useCases/products/deleteProduct";
 
 export const productsRoutes = Router();
 
@@ -22,3 +23,4 @@ const upload = multer({
 productsRoutes.get("/", listProducts);
 productsRoutes.post("/", upload.single("image"), createProducts);
 productsRoutes.put("/:id", upload.single("image"), updateProduct);
+productsRoutes.delete("/:id", deleteProduct);
