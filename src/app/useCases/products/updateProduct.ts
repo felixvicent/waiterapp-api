@@ -2,12 +2,13 @@ import { Request, Response } from "express";
 
 import { Product } from "../../models/Product";
 
-export async function createProducts(req: Request, res: Response) {
+export async function updateProduct(req: Request, res: Response) {
   try {
     const imagePath = req.file?.filename;
+    const { id } = req.params;
     const { name, description, price, category, ingredients } = req.body;
 
-    const product = await Product.create({
+    await Product.findByIdAndUpdate(id, {
       name,
       description,
       price: Number(price),
@@ -16,7 +17,7 @@ export async function createProducts(req: Request, res: Response) {
       imagePath,
     });
 
-    return res.status(201).json(product);
+    return res.sendStatus(204);
   } catch (error) {
     console.log(error);
     return res.status(500);

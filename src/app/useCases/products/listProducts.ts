@@ -1,10 +1,12 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
-import { Product } from '../../models/Product';
+import { Product } from "../../models/Product";
 
 export async function listProducts(req: Request, res: Response) {
   try {
-    const products = await Product.find();
+    const products = await Product.find()
+      .populate("category")
+      .populate("ingredients");
 
     return res.json(products);
   } catch (error) {
