@@ -12,9 +12,9 @@ const server = http.createServer(app);
 export const io = new Server(server);
 
 mongoose
-  .connect("mongodb://localhost:27017")
+  .connect(process.env.MONGO_DB_URI ?? "")
   .then(() => {
-    const port = 3333;
+    const port = process.env.APP_PORT ?? 3333;
 
     app.use(cors());
     app.use(
