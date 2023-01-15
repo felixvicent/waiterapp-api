@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon src/index.ts",
-    "start": "node dist"
+    "start": "node dist",
+    "deploy": "npm run build && npm run start"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
