@@ -16,4 +16,3 @@ artifacts:
     - package.json
     - package-lock.json
     - "dist/**/*"
-  discard-paths: yes
