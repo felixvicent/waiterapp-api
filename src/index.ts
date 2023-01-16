@@ -18,7 +18,7 @@ export const io = new Server(server);
 mongoose
   .connect(process.env.MONGO_DB_URI ?? "")
   .then(() => {
-    const port = process.env.APP_PORT ?? 3333;
+    const port = process.env.PORT;
 
     app.use(cors());
     app.use(
