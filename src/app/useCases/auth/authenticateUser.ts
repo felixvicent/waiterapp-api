@@ -42,6 +42,7 @@ export async function authenticateUser(request: Request, response: Response) {
         name: user.name,
         email: user.email,
         id: user.id,
+        role: user.role,
       },
     };
 
