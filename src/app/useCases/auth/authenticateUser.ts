@@ -15,7 +15,7 @@ export async function authenticateUser(request: Request, response: Response) {
         .json({ message: "Email or password invalid" });
     }
 
-    if (role !== "ADMIN" && role !== user.role) {
+    if (role !== user.role) {
       return response.status(401).json({ message: "Not have permissions" });
     }
 
